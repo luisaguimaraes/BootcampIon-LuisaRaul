@@ -3,9 +3,12 @@ using Tarefas.Web.Models;
 using Tarefas.DTO;
 using Tarefas.DAO;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Tarefas.Web.Controllers
 {
+    [Authorize]
     public class TarefaController : Controller
     {
         private readonly ITarefaDAO _tarefaDAO;
