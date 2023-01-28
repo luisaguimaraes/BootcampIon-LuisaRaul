@@ -30,7 +30,7 @@ namespace Tarefas.DAO
                 con.Open();
                 var result = con.Query<TarefaDTO>(
                     @"SELECT Id, Titulo, Descricao, Concluida, UsuarioId FROM Tarefa
-                    WHERE UsuarioId = @UsuarioId", new { usuarioId }
+                    Where UsuarioId = @UsuarioId", new { usuarioId }
                 ).ToList();
 
                 return result;

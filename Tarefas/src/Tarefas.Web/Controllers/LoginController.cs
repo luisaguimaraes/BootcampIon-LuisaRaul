@@ -58,6 +58,7 @@ namespace Tarefas.Web.Controllers
                         CookieAuthenticationDefaults.AuthenticationScheme, 
                         new ClaimsPrincipal(claimsIdentity),
                         authProperties);
+
                  }
 
                 catch (System.Exception)

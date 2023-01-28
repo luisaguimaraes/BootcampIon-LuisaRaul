@@ -28,7 +28,9 @@ namespace Tarefas.DAO
                             Id          integer primary key autoincrement,
                             Titulo      varchar(100) not null,
                             Descricao   varchar(100) not null,
-                            Concluida   bool not null
+                            Concluida   bool not null,
+                            UsuarioId   integer,
+                            FOREIGN KEY(UsuarioId) REFERENCES Usuario(Id)
                         )"
                     );
 
@@ -51,7 +53,7 @@ namespace Tarefas.DAO
         private void InsertDefaultData(SQLiteConnection con)
         {
             var usuario1 = new UsuarioDTO()
-             {
+             {  Id = 1,
                 Email = "andre@gmail.com",
                 Senha = "biscoito",
                 Nome = "André Paulovich",
@@ -60,6 +62,7 @@ namespace Tarefas.DAO
 
             var usuario2 = new UsuarioDTO()
             {
+                Id = 2,
                 Email = "ivan@gmail.com",
                 Senha = "bolacha",
                 Nome = "Ivan Paulovich",
