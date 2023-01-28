@@ -84,9 +84,9 @@ namespace Tarefas.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Update(int id)
+        public IActionResult Update(int id, int usuarioId)
         {
-            var tarefaDTO = _tarefaDAO.Consultar(id);
+            var tarefaDTO = _tarefaDAO.Consultar(id, usuarioId);
 
             var tarefaViewModel = _mapper.Map<TarefaViewModel>(tarefaDTO);
 

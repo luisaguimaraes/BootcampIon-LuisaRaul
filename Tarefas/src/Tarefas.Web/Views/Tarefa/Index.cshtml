@@ -1,29 +1,38 @@
 @model IEnumerable<Tarefas.Web.Models.TarefaViewModel>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Titulo)</th>
-            <th>@Html.DisplayNameFor(model => model.Descricao)</th>
-            <th>@Html.DisplayNameFor(model => model.Concluida)</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Titulo</td>
-                <td>@item.Descricao</td>
-                <td>
-                    <partial name="_Status" model="item" />
-                </td>
-                <td style="width: 10px; white-space: nowrap;">
-                    <a class="btn btn-secondary btn-sm" asp-controller="Tarefa" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                    <a class="btn btn-secondary btn-sm" asp-controller="Tarefa" asp-action="Update" asp-route-id="@item.Id">Atualizar</a>
-                    <a class="btn btn-secondary btn-sm" asp-controller="Tarefa" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="col-md-8 mx-auto">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Titulo)</th>
+                    <th>@Html.DisplayNameFor(model => model.Descricao)</th>
+                    <th class="text-center">@Html.DisplayNameFor(model => model.Concluida)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Titulo</td>
+                        <td>@item.Descricao</td>
+                        <td class="text-center">
+                            @if (item.Concluida == true)
+                            {
+                                <i class="fa-solid fa-check text-success"></i>
+                            }else{
+                                <i class="fa-solid fa-x text-danger"></i>
+                            }
+                        </td>
+                        <td style="width: 10px; white-space: nowrap;">
+                            <a class="btn btn-primary btn-sm rounded-pill" asp-controller="Tarefa" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                            <a class="btn btn-primary btn-sm rounded-pill" asp-controller="Tarefa" asp-action="Update" asp-route-id="@item.Id">Atualizar</a>
+                            <a class="btn btn-danger btn-sm rounded-pill" asp-controller="Tarefa" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

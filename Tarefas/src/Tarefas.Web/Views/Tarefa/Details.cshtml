@@ -23,14 +23,23 @@
     </div>
 
      <div class="col-12">
-        <div class="form-check form-switch">            
-            <input type="checkbox" asp-for="Concluida" class="form-check-input" disabled/>
-            <label class="form-check-label" asp-for="Concluida">@Html.DisplayNameFor(model => model.Concluida)</label>            
+
+        <label class="form-check-label" asp-for="Concluida">@Html.DisplayNameFor(model => model.Concluida)</label>            
+        <div>
+            @if (@Model.Concluida == true)
+            {
+                <i class="fa-solid fa-check text-success"></i>
+            }else{
+                <i class="fa-solid fa-x text-danger"></i>
+            }
         </div>
+
+       
+        
     </div>
 
     <div class="col-12">
-        <a class="btn btn-secondary" asp-controller="Tarefa" asp-action="Index">Voltar</a>
+        <a class="btn btn-secondary rounded-pill" asp-controller="Tarefa" asp-action="Index">Voltar</a>
     </div>
                 
 </form>
