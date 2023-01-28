@@ -23,6 +23,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
 builder.Services.AddTransient<ITarefaDAO, TarefaDAO>();
 builder.Services.AddTransient<IUsuarioDAO, UsuarioDAO>();
+builder.Services.AddHttpContextAccessor();
 
 // Autenticação
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

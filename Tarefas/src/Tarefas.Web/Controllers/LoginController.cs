@@ -41,7 +41,8 @@ namespace Tarefas.Web.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.Nome),
-                        new Claim(ClaimTypes.Email, user.Email)
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.PrimarySid, user.Id.ToString())
                     };
                     
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -68,6 +69,14 @@ namespace Tarefas.Web.Controllers
             }
 
             return LocalRedirect("/Home");
+        }
+
+        public IActionResult Sair()
+        {
+
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return LocalRedirect("/Login");
+
         }
 
     }

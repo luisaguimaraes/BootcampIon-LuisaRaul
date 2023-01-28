@@ -17,25 +17,27 @@ namespace Tarefas.DAO
                 con.Open();
                 con.Execute(
                     @"INSERT INTO Tarefa
-                    (Titulo, Descricao, Concluida) VALUES
-                    (@Titulo, @Descricao, @Concluida);", tarefa
+                    (Titulo, Descricao, Concluida, UsuarioId) VALUES
+                    (@Titulo, @Descricao, @Concluida, @UsuarioId);", tarefa
                 );
             }
         }
 
-        public List<TarefaDTO> Consultar()
+        public List<TarefaDTO> Consultar(int usuarioId)
         {
             using (var con = Connection)
             {
                 con.Open();
                 var result = con.Query<TarefaDTO>(
-                    @"SELECT Id, Titulo, Descricao, Concluida FROM Tarefa"
+                    @"SELECT Id, Titulo, Descricao, Concluida, UsuarioId FROM Tarefa
+                    WHERE UsuarioId = @UsuarioId", new { usuarioId }
                 ).ToList();
+
                 return result;
             }
         }
 
-        public TarefaDTO Consultar(int id)
+        public TarefaDTO Consultar(int id, int usuarioId)
         {
             using (var con = Connection)
             {
@@ -62,7 +64,7 @@ namespace Tarefas.DAO
             }
         }
 
-        public void Excluir(int id)
+        public void Excluir(int id, int UsuarioId)
         {
             using (var con = Connection)
             {
